@@ -29,6 +29,14 @@
       textInput.value = '';
     }
 
+    function publishMessageForVietNamese() {
+      var textInput = document.getElementById('msg_input');
+      var msg = textInput.value;
+      var user = "[" + myName + "] ";
+      socketio.emit("publish-vietnamese", {user: user, value: msg});
+      textInput.value = '';
+    }
+
     function addMessage (msg) {
       var domMeg = document.createElement('div');
       domMeg.innerHTML = new Date().toLocaleTimeString() + ' ' + msg;

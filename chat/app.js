@@ -1,5 +1,6 @@
 var http = require("http");
 var translate = require('google-translate-api');
+var helper = require('./helper');
 
 // 1.モジュールオブジェクトの初期化
 var fs = require("fs");
@@ -45,8 +46,7 @@ io.sockets.on("connection", function (socket) {
   // メッセージ送信カスタムイベント
   socket.on("publish-vietnamese", function (data) {
     translate(data.value, {from: 'ja', to: 'vi'}).then(res => {
-      console.log(res.text);
-      io.sockets.emit("publish", {value:data.user + res.text});
+      io.sockets.emit("publish", {value:data.user + helper.getTeenCode(res.text)});
     }).catch(err => {
       console.error(err);
     });
