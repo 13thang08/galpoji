@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>ホソミチチャット</title>
+  <title>GALPOJI</title>
 </head>
 <body>
   <input type="text" id="msg_input" style="width:200px;" />
@@ -23,9 +23,7 @@
 
     function publishMessage() {
       var textInput = document.getElementById('msg_input');
-      var msg = textInput.value;
-      var user = "[" + myName + "] ";
-      socketio.emit("publish", {user: user, value: msg});
+      socketio.emit("publish", {value: textInput.value, name: myName});
       textInput.value = '';
     }
 
