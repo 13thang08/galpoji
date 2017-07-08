@@ -26,7 +26,6 @@ io.sockets.on("connection", function (socket) {
 
   // メッセージ送信カスタムイベント
   socket.on("publish", function (data) {
-    console.log(data.value);
     http.get("http://gal.koneta.org/gal.cgi?input=" + encodeURIComponent(data.value), function(res) {
       res.setEncoding('utf-8');
       var body = '';
@@ -34,19 +33,17 @@ io.sockets.on("connection", function (socket) {
         body += chunk;
       });
       res.on('end', function() {
-        console.log(body);
-        io.sockets.emit("publish", {value:data.user + body});
+        io.sockets.emit("publish", {value:body, name:data.name});
       });
     }).on('error', function(e) {
       console.log("Got error: " + e.message);
-    }); 
-    //io.sockets.emit("publish", {value:data.value});
+    });
   });
 
   // メッセージ送信カスタムイベント
   socket.on("publish-vietnamese", function (data) {
     translate(data.value, {from: 'ja', to: 'vi'}).then(res => {
-      io.sockets.emit("publish", {value:data.user + helper.getTeenCode(res.text)});
+      io.sockets.emit("publish", {value:helper.getTeenCode(res.text) , name:data.name});
     }).catch(err => {
       console.error(err);
     });

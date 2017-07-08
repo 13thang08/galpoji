@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>ホソミチチャット</title>
+  <title>GALPOJI</title>
 </head>
 <body>
   <input type="text" id="msg_input" style="width:200px;" />
@@ -13,7 +13,7 @@
     var socketio = io.connect('http://localhost:8080');
 
     socketio.on("connected", function(name) {});
-    socketio.on("publish", function (data) { addMessage(data.value); });
+    socketio.on("publish", function (data) { addMessage(data.value, data.name); });
     socketio.on("disconnect", function () {});
 
     // 2.イベントに絡ませる関数の定義
@@ -23,9 +23,7 @@
 
     function publishMessage() {
       var textInput = document.getElementById('msg_input');
-      var msg = textInput.value;
-      var user = "[" + myName + "] ";
-      socketio.emit("publish", {user: user, value: msg});
+      socketio.emit("publish", {value: textInput.value, name: myName});
       textInput.value = '';
     }
 
@@ -33,13 +31,22 @@
       var textInput = document.getElementById('msg_input');
       var msg = textInput.value;
       var user = "[" + myName + "] ";
-      socketio.emit("publish-vietnamese", {user: user, value: msg});
+      socketio.emit("publish-vietnamese", {value: textInput.value, name: myName});
       textInput.value = '';
     }
 
-    function addMessage (msg) {
+    function addMessage (msg, name) {
       var domMeg = document.createElement('div');
-      domMeg.innerHTML = new Date().toLocaleTimeString() + ' ' + msg;
+      if(name=== void 0){
+        // 入出/退出時
+        domMeg.innerHTML = new Date().toLocaleTimeString() + ' 入出/退出時 ' + msg;
+      }else if(name == myName){
+        // 自分発言
+        domMeg.innerHTML = new Date().toLocaleTimeString() + ' 自分が発言 ' + msg;
+      }else {
+        // 他人発言
+        domMeg.innerHTML = new Date().toLocaleTimeString() + ' [' + name + '] ' + msg;
+      }
       msgArea.appendChild(domMeg);
     }
 
