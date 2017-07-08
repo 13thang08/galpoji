@@ -13,7 +13,7 @@
     var socketio = io.connect('http://localhost:8080');
 
     socketio.on("connected", function(name) {});
-    socketio.on("publish", function (data) { addMessage(data.value, data.name); });
+    socketio.on("publish", function (data) { addMessage(data.value, data.name, data.user); });
     socketio.on("disconnect", function () {});
 
     // 2.イベントに絡ませる関数の定義
@@ -27,7 +27,7 @@
       textInput.value = '';
     }
 
-    function addMessage (msg, name) {
+    function addMessage (msg, name, user) {
       var domMeg = document.createElement('div');
       if(name=== void 0){
         // 入出/退出時
@@ -37,7 +37,7 @@
         domMeg.innerHTML = new Date().toLocaleTimeString() + ' 自分が発言 ' + msg;
       }else {
         // 他人発言
-        domMeg.innerHTML = new Date().toLocaleTimeString() + ' [' + name + '] ' + msg;
+        domMeg.innerHTML = new Date().toLocaleTimeString() + ' [' + user + '] ' + msg;
       }
       msgArea.appendChild(domMeg);
     }
@@ -45,7 +45,6 @@
     // 3.開始処理
     var msgArea = document.getElementById("msg");
     var myName = Math.floor(Math.random()*100) + "さん";
-    addMessage("貴方は" + myName + "として入室しました");
     start(myName);
   </script>
 </body>

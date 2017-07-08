@@ -11,27 +11,33 @@ var io = require("socket.io").listen(server);
 
 // ユーザ管理ハッシュ
 var userHash = {};
+var userList = {};
+
+var index = 0;
 
 // 2.イベントの定義
 io.sockets.on("connection", function (socket) {
 
   // 接続開始カスタムイベント(接続元ユーザを保存し、他ユーザへ通知)
   socket.on("connected", function (name) {
-    var msg = name + "が入室しました";
+    index++;
+    var msg = "ユーザー" + index + "が入室しました";
     userHash[socket.id] = name;
+    userList[socket.id] = "ユーザー" + index;
     io.sockets.emit("publish", {value: msg});
   });
 
   // メッセージ送信カスタムイベント
   socket.on("publish", function (data) {
     http.get("http://gal.koneta.org/gal.cgi?input=" + encodeURIComponent(data.value), function(res) {
+      console.log(socket.id);
       res.setEncoding('utf-8');
       var body = '';
       res.on('data', function(chunk) {
         body += chunk;
       });
       res.on('end', function() {
-        io.sockets.emit("publish", {value:body, name:data.name});
+        io.sockets.emit("publish", {value:body, name:data.name, user:userList[socket.id]});
       });
     }).on('error', function(e) {
       console.log("Got error: " + e.message);
