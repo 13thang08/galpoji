@@ -31,7 +31,7 @@ io.sockets.on("connection", function (socket) {
         body += chunk;
       });
       res.on('end', function() {
-        io.sockets.emit("publish", {value: '[' + data.name+']' + body});
+        io.sockets.emit("publish", {value:body, name:data.name});
       });
     }).on('error', function(e) {
       console.log("Got error: " + e.message);
