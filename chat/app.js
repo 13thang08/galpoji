@@ -1,3 +1,5 @@
+var http = require("http");
+
 // 1.モジュールオブジェクトの初期化
 var fs = require("fs");
 var server = require("http").createServer(function(req, res) {
@@ -22,7 +24,21 @@ io.sockets.on("connection", function (socket) {
 
   // メッセージ送信カスタムイベント
   socket.on("publish", function (data) {
-    io.sockets.emit("publish", {value:data.value});
+    console.log(data.value);
+    http.get("http://gal.koneta.org/gal.cgi?input=" + encodeURIComponent(data.value), function(res) {
+      res.setEncoding('utf-8');
+      var body = '';
+      res.on('data', function(chunk) {
+        body += chunk;
+      });
+      res.on('end', function() {
+        console.log(body);
+        io.sockets.emit("publish", {value:data.user + body});
+      });
+    }).on('error', function(e) {
+      console.log("Got error: " + e.message);
+    }); 
+    //io.sockets.emit("publish", {value:data.value});
   });
 
   // 接続終了組み込みイベント(接続元ユーザを削除し、他ユーザへ通知)

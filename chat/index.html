@@ -23,8 +23,9 @@
 
     function publishMessage() {
       var textInput = document.getElementById('msg_input');
-      var msg = "[" + myName + "] " + textInput.value;
-      socketio.emit("publish", {value: msg});
+      var msg = textInput.value;
+      var user = "[" + myName + "] ";
+      socketio.emit("publish", {user: user, value: msg});
       textInput.value = '';
     }
 
