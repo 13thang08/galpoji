@@ -2,13 +2,12 @@ var http = require("http");
 var translate = require('google-translate-api');
 var helper = require('./helper');
 
-// 1.モジュールオブジェクトの初期化
-var fs = require("fs");
-var server = require("http").createServer(function(req, res) {
-     res.writeHead(200, {"Content-Type":"text/html"});
-     var output = fs.readFileSync("./index.html", "utf-8");
-     res.end(output);
-}).listen(8080);
+var express = require('express');
+var app = express();
+
+app.use(express.static('./public'));
+
+var server = app.listen (8080);
 var io = require("socket.io").listen(server);
 
 // ユーザ管理ハッシュ
@@ -26,7 +25,7 @@ io.sockets.on("connection", function (socket) {
     var msg = "ユーザー" + index + "が入室しました";
     userHash[socket.id] = name;
     userList[socket.id] = "ユーザー" + index;
-    io.sockets.emit("publish", {value: msg});
+    // io.sockets.emit("publish", {value: msg});
   });
 
   // メッセージ送信カスタムイベント
@@ -60,7 +59,7 @@ io.sockets.on("connection", function (socket) {
     if (userHash[socket.id]) {
       var msg = userHash[socket.id] + "が退出しました";
       delete userHash[socket.id];
-      io.sockets.emit("publish", {value: msg});
+      // io.sockets.emit("publish", {value: msg});
     }
   });
 });
