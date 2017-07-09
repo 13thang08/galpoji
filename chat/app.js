@@ -7,15 +7,6 @@ var app = express();
 
 app.use(express.static('./public'));
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/', function (req, res) {
-  res.writeHead(200, {"Content-Type":"text/html"});
-  var output = fs.readFileSync("./index.html", "utf-8");
-  res.end(output);
-})
-
-// 1.モジュールオブジェクトの初期化
-var fs = require("fs");
 var server = app.listen (8080);
 var io = require("socket.io").listen(server);
 
