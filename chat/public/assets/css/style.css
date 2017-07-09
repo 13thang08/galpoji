@@ -139,14 +139,34 @@ body {
 
 #chat {
   height: 100%;
-  background-color: #f19baf;
+  background-color: #f6bebd;
+}
+
+#chat .chat-title {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  display: table;
+  width: 100%;
+  min-width: 320px;
+  height: 50px;
+  text-align: center;
+  background-color: #f09;
+}
+
+#chat .chat-title span {
+  display: table-cell;
+  font-size: 18px;
+  vertical-align: middle;
+  color: #fff;
 }
 
 #chat .chat-frame {
   min-width: 320px;
   margin: auto;
   padding: 1em 2em;
-  background-color: #f19baf;
+  background-color: #f6bebd;
 }
 
 #chat .chat-frame .chat-talk {
@@ -159,6 +179,12 @@ body {
   display: block;
   margin: 0;
   padding: 0;
+}
+
+#chat .chat-frame .chat-talk .talk-name {
+  margin: 0 auto 0 70px;
+  font-size: 12px;
+  color: #fff;
 }
 
 #chat .chat-frame .chat-talk .talk-icon {
@@ -206,14 +232,18 @@ body {
 #chat .chat-frame .chat-talk.mytalk .talk-content {
   margin: 0 70px 0 auto;
   color: #fff;
-  background: #f09;
+  background: #e95295;
 }
 
 #chat .chat-frame .chat-talk.mytalk .talk-content:before {
   left: auto;
   right: -20px;
   border-color: transparent;
-  border-left-color: #f09;
+  border-left-color: #e95295;
+}
+
+#chat .chat-frame .chat-talk:first-child {
+  margin: 3em 0 1em 0;
 }
 
 #chat .chat-frame .chat-talk:last-child {

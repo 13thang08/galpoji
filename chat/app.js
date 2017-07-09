@@ -24,7 +24,7 @@ io.sockets.on("connection", function (socket) {
     index++;
     var msg = "ユーザー" + index + "が入室しました";
     userHash[socket.id] = name;
-    userList[socket.id] = "ユーザー" + index;
+    userList[socket.id] = "ュ⇒廾〃→" + index;
     // io.sockets.emit("publish", {value: msg});
   });
 

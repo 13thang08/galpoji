@@ -43,6 +43,8 @@
         $chat.find('.talk-content').text(msg);
         if (name == myName) {
           $chat.addClass('mytalk');
+        } else {
+          $chat.prepend('<span class="talk-name">' + name + '</span>');
         }
         $('.chat-frame').append($chat);
         $chat.show();
@@ -72,7 +74,7 @@
 
     // 3.開始処理
     var msgArea = document.getElementById("msg");
-    var myName = Math.floor(Math.random()*100) + "さん";
+    var myName = "ュ⇒廾〃→" + Math.floor(Math.random()*100) + "±h";
     start(myName);
   </script>
 </head>
@@ -80,10 +82,15 @@
 <body>
 
   <div id="chat">
+    
+    <!-- <div class="chat-title">
+      <span>← ‡〃ャlﾚﾎoｼ〃 →</span>
+    </div> -->
 
     <div class="chat-frame">
 
       <p class="chat-talk dummy" style="display: none;">
+        <!-- <span class="talk-name">ュ⇒廾〃→1</span> -->
         <span class="talk-icon">
           <img src="assets/img/ganguro_gal.png" />
         </span>
