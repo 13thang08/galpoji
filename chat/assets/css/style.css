@@ -1,0 +1,287 @@
+@charset "UTF-8";
+/* ==========================================================
+	reset
+========================================================== */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  word-break: break-all;
+}
+
+body,
+div,
+p,
+form,
+blockquote,
+pre,
+figure {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+div,
+p,
+form {
+  -webkit-text-size-adjust: 100%;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a img {
+  border: 0 none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+em {
+  font-style: normal;
+}
+
+button,
+input,
+textarea {
+  resize: none;
+  padding: 0;
+  font-size: 16px;
+  background: transparent;
+  border: 0 none;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 0;
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+select {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  vertical-align: middle;
+  color: inherit;
+  background: none transparent;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+fieldset {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  font-family: 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+  font-size: 16px;
+}
+
+/*
+style.css
+*/
+html,
+body {
+  height: 100%;
+}
+
+#chat {
+  height: 100%;
+  background-color: #f19baf;
+}
+
+#chat .chat-frame {
+  min-width: 320px;
+  margin: auto;
+  padding: 1em 2em;
+  background-color: #f19baf;
+}
+
+#chat .chat-frame .chat-talk {
+  overflow: hidden;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+#chat .chat-frame .chat-talk span {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+#chat .chat-frame .chat-talk .talk-icon {
+  float: left;
+  width: auto;
+}
+
+#chat .chat-frame .chat-talk .talk-icon img {
+  width: 55px;
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  background-color: #fff;
+  border: 2px solid #e40085;
+  border-radius: 50%;
+}
+
+#chat .chat-frame .chat-talk .talk-content {
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  min-height: 50px;
+  margin: 0 auto 0 70px;
+  padding: 1em;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+#chat .chat-frame .chat-talk .talk-content:before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: -20px;
+  display: block;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right-color: #fff;
+}
+
+#chat .chat-frame .chat-talk.mytalk .talk-icon {
+  float: right;
+}
+
+#chat .chat-frame .chat-talk.mytalk .talk-content {
+  margin: 0 70px 0 auto;
+  color: #fff;
+  background: #f09;
+}
+
+#chat .chat-frame .chat-talk.mytalk .talk-content:before {
+  left: auto;
+  right: -20px;
+  border-color: transparent;
+  border-left-color: #f09;
+}
+
+#chat .chat-frame .chat-talk:last-child {
+  margin: 0 0 2.5em 0;
+}
+
+#chat .chat-input {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: table;
+  width: 100%;
+  min-width: 320px;
+  height: 40px;
+  background-color: #fff;
+}
+
+#chat .chat-input input[type='text'] {
+  display: table-cell;
+  width: 100%;
+  height: 30px;
+  margin: 5px;
+  padding: 0 5px;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+}
+
+#chat .chat-input .button-area {
+  display: table-cell;
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+#chat .chat-input .btn {
+  display: inline-block;
+  margin: 5px;
+  padding: .2em 1em;
+  font-family: 'Booster Next FY', 'Avenir Next', Avenir, sans-serif;
+  font-size: inherit;
+  font-weight: normal;
+  line-height: 1.5;
+  vertical-align: bottom;
+  background: transparent;
+  border-width: 0;
+  border-style: solid;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: background-color .3s;
+}
+
+#chat .chat-input .btn:active {
+  transition-duration: .1s;
+}
+
+#chat .chat-input .btn-primary {
+  color: #e6eaef;
+  background-color: #f09;
+}
+
+#chat .chat-input .btn-primary:hover {
+  background-color: #ff1476;
+}
+
+#chat .chat-input .btn-primary:active {
+  background-color: #eb0062;
+}
