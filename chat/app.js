@@ -2,13 +2,21 @@ var http = require("http");
 var translate = require('google-translate-api');
 var helper = require('./helper');
 
+var express = require('express');
+var app = express();
+
+app.use(express.static('./public'));
+
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function (req, res) {
+  res.writeHead(200, {"Content-Type":"text/html"});
+  var output = fs.readFileSync("./index.html", "utf-8");
+  res.end(output);
+})
+
 // 1.モジュールオブジェクトの初期化
 var fs = require("fs");
-var server = require("http").createServer(function(req, res) {
-     res.writeHead(200, {"Content-Type":"text/html"});
-     var output = fs.readFileSync("./index.html", "utf-8");
-     res.end(output);
-}).listen(8080);
+var server = app.listen (8080);
 var io = require("socket.io").listen(server);
 
 // ユーザ管理ハッシュ
