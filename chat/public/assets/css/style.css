@@ -233,7 +233,7 @@ body {
 
 #chat .chat-input input[type='text'] {
   display: table-cell;
-  width: 100%;
+  width: 99%;
   height: 30px;
   margin: 5px;
   padding: 0 5px;
@@ -246,6 +246,10 @@ body {
   width: 1%;
   white-space: nowrap;
   vertical-align: middle;
+}
+
+#chat .chat-input .button-area:last-child .btn {
+  margin-left: 0;
 }
 
 #chat .chat-input .btn {

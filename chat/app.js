@@ -34,7 +34,7 @@ io.sockets.on("connection", function (socket) {
     var msg = "ユーザー" + index + "が入室しました";
     userHash[socket.id] = name;
     userList[socket.id] = "ユーザー" + index;
-    io.sockets.emit("publish", {value: msg});
+    // io.sockets.emit("publish", {value: msg});
   });
 
   // メッセージ送信カスタムイベント
@@ -68,7 +68,7 @@ io.sockets.on("connection", function (socket) {
     if (userHash[socket.id]) {
       var msg = userHash[socket.id] + "が退出しました";
       delete userHash[socket.id];
-      io.sockets.emit("publish", {value: msg});
+      // io.sockets.emit("publish", {value: msg});
     }
   });
 });
