@@ -1,13 +1,14 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
+
 <head>
   <meta charset="UTF-8">
-  <title>GALPOJI</title>
-</head>
-<body>
-  <input type="text" id="msg_input" style="width:200px;" />
-  <button onclick="publishMessage();">語る</button>
-  <div id="msg"></div>
-  <script src="/socket.io/socket.io.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>‡〃ャlﾚﾎoｼ〃</title>
+  <link rel="stylesheet" href="/assets/css/style.css" media="all" />
+  <!-- <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script> -->
+  <script src="/socket.io/socket.io.js" type="text/javascript"></script>
   <script type="text/javascript">
     // 1.イベントとコールバックの定義
     var socketio = io.connect('http://localhost:8080');
@@ -36,18 +37,27 @@
     }
 
     function addMessage (msg, name, user) {
+      // var $chat = $('.chat-talk.dummy').clone();
+      // $chat.removeClass('dummy');
+      // $chat.find('.talk-content').text(msg);
+      // if (name == myName) {
+      //   $chat.addClass('mytalk');
+      // }
+      // $chat.show();
+      /*
       var domMeg = document.createElement('div');
       if(name=== void 0){
         // 入出/退出時
-        domMeg.innerHTML = new Date().toLocaleTimeString() + ' 入出/退出時 ' + msg;
+       domMeg.innerHTML = new Date().toLocaleTimeString() + ' 入出/退出時 ' + msg;
       }else if(name == myName){
         // 自分発言
-        domMeg.innerHTML = new Date().toLocaleTimeString() + ' 自分が発言 ' + msg;
+       domMeg.innerHTML = new Date().toLocaleTimeString() + ' 自分が発言 ' + msg;
       }else {
         // 他人発言
-        domMeg.innerHTML = new Date().toLocaleTimeString() + ' [' + user + '] ' + msg;
+       domMeg.innerHTML = new Date().toLocaleTimeString() + ' [' + user + '] ' + msg;
       }
       msgArea.appendChild(domMeg);
+      */
     }
 
     // 3.開始処理
@@ -55,5 +65,38 @@
     var myName = Math.floor(Math.random()*100) + "さん";
     start(myName);
   </script>
+</head>
+
+<body>
+
+  <div id="chat">
+
+    <div class="chat-frame">
+
+      <p class="chat-talk dummy" style="display: none;">
+        <span class="talk-icon">
+          <img src="assets/img/ganguro_gal.png" />
+        </span>
+        <span class="talk-content">[トーク内容を記載]</span>
+      </p>
+<!--
+      <p class="chat-talk mytalk">
+        <span class="talk-icon">
+          <img src="assets/img/ganguro_gal.png" />
+        </span>
+        <span class="talk-content">[トーク内容を記載]</span>
+      </p>
+-->
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="msg_input" placeholder="χｯ世→ｼ〃щoぃяё〒йё">
+      <div class="button-area">
+        <button class="btn btn-primary" onclick="publishMessage();">ぉ＜ゑ</button>
+      </div>
+    </div>
+    
+  </div>
+
 </body>
 </html>
